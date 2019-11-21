@@ -3,8 +3,8 @@
 
 CC := g++
 
+CXXFLAG = -I./include
 #CXXFLAG = -std=c++11 -g
-#HEADFILE_PATH = -I./include
 
 .PHONY : all
 all : main
@@ -15,10 +15,10 @@ main : main.o tool.o
 	$(CC) -o main main.o tool.o
 
 main.o :
-	$(CC) -c src/main.cpp -I./include
+	$(CC) -c src/main.cpp $(CXXFLAG)
 
 tool.o :
-	$(CC) -c src/tool.cpp -I./include
+	$(CC) -c src/tool.cpp $(CXXFLAG)
 
 .PHONY : clean
 clean:
