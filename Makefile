@@ -4,7 +4,7 @@
 CC := g++
 
 CXXFLAG = -I./include
-#CXXFLAG = -std=c++11 -g
+CXXFLAG += -std=c++11 -g
 
 .PHONY : all
 all : main
