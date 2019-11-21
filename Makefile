@@ -3,26 +3,26 @@
 
 CC := g++
 
-
-#CXXFLAG = -I./include -std=c++11 -g
-CXXFLAG = -std=c++11 -g
+#CXXFLAG = -std=c++11 -g
+#HEADFILE_PATH = -I./include
 
 .PHONY : all
 all : main
-
+	-mkdir build
+	mv *.o main build
 
 main : main.o tool.o
 	$(CC) -o main main.o tool.o
 
-main.o : tool.h
-	$(CC) -c main.cpp
+main.o :
+	$(CC) -c src/main.cpp -I./include
 
-tool.o : tool.h
-	$(CC) -c tool.cpp
+tool.o :
+	$(CC) -c src/tool.cpp -I./include
 
 .PHONY : clean
 clean:
-	rm -r *.o main
+	-rm -r build
 
 
 
