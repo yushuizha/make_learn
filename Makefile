@@ -9,19 +9,19 @@ CXXFLAG += -std=c++11 -g
 .PHONY : all
 all : main
 	-mkdir build
-	mv *.o main build
+	mv *.o *.a main build
 
-main : main.o tool.o core.o
-	$(CC) -o main main.o tool.o core.o
+main : main.o libtool.a
+	$(CC) -o main main.o libtool.a
 
 main.o :
 	$(CC) -c src/main.cpp $(CXXFLAG)
 
-tool.o :
-	$(CC) -c src/tool.cpp $(CXXFLAG)
+libtool.a : tool.o core.o
+	ar r libtool.a tool.o core.o
 
-core.o :
-	$(CC) -c src/core.cpp $(CXXFLAG)
+tool.o core.o:
+	$(CC) -c src/tool.cpp src/core.cpp $(CXXFLAG)
 
 .PHONY : clean
 clean:
